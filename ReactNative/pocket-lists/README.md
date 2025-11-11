@@ -79,12 +79,23 @@ Where to look
 ## Screenshots
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+  <h3> IOS </h3>
   <div style="text-align: center;">
     <h4>Home Screen</h4>
-    <img src="screenshots/home.png" alt="Home" width="360" />
+    <img src="screenshots/ios_home.png" alt="Home" width="360" />
   </div>
   <div style="text-align: center;">
     <h4>Details Screen</h4>
-    <img src="screenshots/details.png" alt="Details" width="360" />
+    <img src="screenshots/ios_details.png" alt="Details" width="360" />
+  </div>
+
+  <h3> Android </h3>
+  <div style="text-align: center;">
+    <h4>Home Screen</h4>
+    <img src="screenshots/android_home.png" alt="Home" width="360" />
+  </div>
+  <div style="text-align: center;">
+    <h4>Details Screen</h4>
+    <img src="screenshots/android_details.png" alt="Details" width="360" />
   </div>
 </div>
