@@ -22,15 +22,13 @@ Troubleshooting
 
 ## Screenshots
 
-Embed in this README using standard markdown. Example:
-
-```markdown
-![Home screen](screenshots/home.png)
-![Details screen](screenshots/details.png)
-```
-
-If you want to control display size in some renderers, use a small HTML tag (most markdown viewers allow this):
-
-```html
-<img src="screenshots/home.png" alt="Home" width="360" />
-```
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+  <div style="text-align: center;">
+    <h4>Home Screen</h4>
+    <img src="screenshots/home.png" alt="Home" width="360" />
+  </div>
+  <div style="text-align: center;">
+    <h4>Details Screen</h4>
+    <img src="screenshots/details.png" alt="Details" width="360" />
+  </div>
+</div>
