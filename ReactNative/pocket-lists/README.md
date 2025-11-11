@@ -1,6 +1,6 @@
-# Pocket Lists (React Native / Expo)
+ # Pocket Lists (React Native / Expo)
 
-A React Native app built with Expo for managing simple lists. Users can add items, edit details and notes, attach photos, and toggle between light and dark themes—all stored locally.
+A React Native app (Expo) for a small homework/demo: add lightweight lists, edit details, attach optional photos, and toggle light/dark theme. Data persists locally with AsyncStorage.
 
 ## Features
 
@@ -23,108 +23,55 @@ A React Native app built with Expo for managing simple lists. Users can add item
 - Theme preference stored in AsyncStorage
 - All items and settings persist across app restarts
 
-## Project Structure
+## Project structure (short)
 
 ```
 src/
-  ├── app.js                    # Root navigator (NavigationContainer + Stack)
+  ├── App.js                # Root navigator (NavigationContainer + Stack)
   ├── components/
-  │   └── ThemeContext.js       # Theme provider & useTheme hook
+  │   ├── ThemeContext.js  # Theme provider & useTheme hook
+  │   ├── ListItem.js      # Row UI for items
+  │   └── ThemedView.js    # Small themed wrapper
   ├── screens/
-  │   ├── HomeScreen.js         # List, add, delete, toggle done
-  │   ├── DetailsScreen.js      # Edit note, photo picker, save
-  │   └── SettingsScreen.js     # (optional placeholder)
+  │   ├── HomeScreen.js    # Main list UI and add input
+  │   ├── DetailsScreen.js # Edit note, pick photo, save
+  │   └── SettingsScreen.js# Theme toggle + clear storage
   └── storage/
-      ├── items.js              # loadItems() / saveItems() helpers
-      └── theme.js              # loadTheme() / saveTheme() helpers
-index.js                         # Entry point (registerRootComponent)
+      ├── items.js         # loadItems() / saveItems() helpers
+      └── theme.js         # loadTheme() / saveTheme() helpers
+index.js                   # Entry point (registerRootComponent)
 package.json
 ```
 
-## Setup
+Quick start
 
-1. **Install dependencies**
+1. Install dependencies
 
 ```bash
-cd /Users/sriram/Documents/GitHub/MobileAppDev/ReactNative/pocket-lists
+cd ReactNative/pocket-lists
 npm install
 ```
 
-2. **Run on iOS Simulator**
+2. Start Expo
 
 ```bash
 npx expo start
-# Then press 'i' or use Expo DevTools
 ```
 
-3. **Run on Android Emulator**
+3. Run on a simulator or device
 
-```bash
-npx expo start
-# Then press 'a' or use Expo DevTools
-```
+- Press `i` to run iOS simulator (macOS + Xcode required)
+- Press `a` to run Android emulator
+- Or open the QR in Expo Go on your device
 
-4. **Run on Device (Expo Go)**
+Notes & troubleshooting
 
-```bash
-npx expo start
-# Scan QR code with Expo Go app on device
-```
+- If you see a warning about `Non-serializable values` in navigation, avoid passing functions in `navigation.navigate` params — use storage or context instead (this project follows that practice).
+- If the image picker warns about `MediaTypeOptions` deprecation, it’s from the installed `expo-image-picker` version; both `MediaTypeOptions` and `MediaType` patterns may appear depending on SDK. The app uses the compatible API for the SDK version included.
+- If Metro reports an assets folder missing (ENOENT assets/images), create `assets/images` at the project root — this repo includes that folder.
 
-## Clearing Cache (if needed)
+Where to look
 
-```bash
-npx expo start -c
-```
-
-## Permissions
-
-- **Image Picker**: Requires photo library permission. Accept the permission prompt on device/simulator when you tap "Add Photo" or "Change Photo".
-
-## Homework Deliverables Checklist
-
-- [x] Home/List screen: add, delete, mark done, search, pull-to-refresh
-- [x] Details screen: edit title/note, optional photo picker, save
-- [x] Platform-specific confirmations (iOS ActionSheetIOS, Android Alert)
-- [x] Theme toggle (light/dark, persisted)
-- [x] AsyncStorage persistence for items and theme
-- [x] Project structure with `/src/components`, `/src/screens`, `/src/storage`
-- [ ] Screenshots (place in repo root):
-  - `ios-home.png` — Home screen on iOS
-  - `ios-details.png` — Details screen on iOS
-  - `ios-theme.png` — Theme toggle visible
-  - `android-home.png` — Home screen on Android
-  - `android-details.png` — Details screen on Android
-  - `android-theme.png` — Theme toggle visible
-
-## Notes
-
-- **Entry Point**: `index.js` at the project root registers the app with Expo. `package.json` main points to `index.js`.
-- **Navigation**: Stack Navigator handles Home → Details navigation.
-- **Storage**: Items and theme are stored in AsyncStorage with keys `PL_ITEMS_V1` and `PL_THEME`.
-
-## Troubleshooting
-
-**"main has not been registered" error**
-- Ensure `package.json` main is set to `index.js`
-- Stop Metro, clear cache: `npx expo start -c`
-
-**Import errors or "Cannot find module"**
-- Check file paths in imports (e.g., `./src/app` not `./src/App`)
-- Restart: `npx expo start -c`
-
-**Image picker not working**
-- Ensure `expo-image-picker` is in `package.json` dependencies
-- Accept permission prompt on device
-
-## Optional Enhancements
-
-- Add PropTypes for prop validation
-- Create `/src/storage/` helpers and move AsyncStorage calls there (mostly done)
-- Add unit tests
-- Implement Swipe-to-delete gesture
-- Add item categories or tags
-
----
-
-Ready to test! Run `npx expo start` and press `i` or `a`.
+- UI: `src/screens/*` (Home, Details, Settings)
+- Theming: `src/components/ThemeContext.js`
+- Storage: `src/storage/items.js` and `src/storage/theme.js`

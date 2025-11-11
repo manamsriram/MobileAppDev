@@ -69,7 +69,6 @@ export default function DetailsScreen({ route, navigation }) {
         aspect: [4, 3],
         quality: 0.5,
       });
-      // Remove debug logs and Alert, just show a popup if image is picked
       if (!result.canceled && result.assets && result.assets.length > 0) {
         setPhotoUri(result.assets[0].uri);
         Alert.alert('Image uploaded', 'Your image was selected successfully.');
