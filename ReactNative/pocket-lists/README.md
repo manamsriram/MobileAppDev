@@ -92,10 +92,10 @@ Where to look
   <h3> Android </h3>
   <div style="text-align: center;">
     <h4>Home Screen</h4>
-    <img src="screenshots/android_home.png" alt="Home" width="360" />
+    <img src="screenshots/android_home.jpeg" alt="Home" width="360" />
   </div>
   <div style="text-align: center;">
     <h4>Details Screen</h4>
-    <img src="screenshots/android_details.png" alt="Details" width="360" />
+    <img src="screenshots/android_details.jpeg" alt="Details" width="360" />
   </div>
 </div>
