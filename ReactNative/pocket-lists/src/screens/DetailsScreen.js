@@ -13,33 +13,31 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useTheme } from '../components/ThemeContext';
+import { saveItems } from '../storage/items';
 
 export default function DetailsScreen({ route, navigation }) {
-  const { item, updateItem, items } = route.params;
+  const { item, items } = route.params;
   const { theme } = useTheme();
 
   const [title, setTitle] = useState(item.title);
   const [note, setNote] = useState(item.note || '');
   const [photoUri, setPhotoUri] = useState(item.photoUri || null);
 
-  const saveChanges = () => {
+  const saveChanges = async () => {
     if (title.trim().length < 2 || title.trim().length > 40) {
       Alert.alert('Invalid Title', 'Title must be between 2-40 characters');
       return;
     }
-
     const updatedItem = {
       ...item,
       title: title.trim(),
       note,
       photoUri,
     };
-
     const updatedItems = items.map((i) =>
       i.id === item.id ? updatedItem : i
     );
-
-    updateItem(updatedItems);
+    await saveItems(updatedItems);
 
     // Platform-specific confirmation
     if (Platform.OS === 'ios') {
@@ -59,23 +57,26 @@ export default function DetailsScreen({ route, navigation }) {
   };
 
   const pickImage = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (status !== 'granted') {
-      Alert.alert('Permission needed', 'Please grant photo library access');
-      return;
-    }
-
-    const result = await ImagePicker.launchImageLibraryAsync({
-      // `MediaTypeOptions` is deprecated; use `MediaType` (or an array of MediaType)
-      mediaTypes: ImagePicker.MediaType.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 0.5,
-    });
-
-    if (!result.canceled) {
-      setPhotoUri(result.assets[0].uri);
+    try {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission needed', 'Please grant photo library access');
+        return;
+      }
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 0.5,
+      });
+      // Remove debug logs and Alert, just show a popup if image is picked
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        setPhotoUri(result.assets[0].uri);
+        Alert.alert('Image uploaded', 'Your image was selected successfully.');
+      }
+    } catch (err) {
+      console.log('ImagePicker error:', err);
+      Alert.alert('ImagePicker error', String(err));
     }
   };
 

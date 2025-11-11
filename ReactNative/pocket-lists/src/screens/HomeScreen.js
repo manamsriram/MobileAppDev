@@ -126,7 +126,6 @@ export default function HomeScreen({ navigation }) {
       onPress={() =>
         navigation.navigate('Details', {
           item,
-          updateItem: saveItemsToStorage,
           items,
         })
       }
