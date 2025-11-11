@@ -75,3 +75,16 @@ Where to look
 - UI: `src/screens/*` (Home, Details, Settings)
 - Theming: `src/components/ThemeContext.js`
 - Storage: `src/storage/items.js` and `src/storage/theme.js`
+
+## Screenshots
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+  <div style="text-align: center;">
+    <h4>Home Screen</h4>
+    <img src="screenshots/home.png" alt="Home" width="360" />
+  </div>
+  <div style="text-align: center;">
+    <h4>Details Screen</h4>
+    <img src="screenshots/details.png" alt="Details" width="360" />
+  </div>
+</div>
