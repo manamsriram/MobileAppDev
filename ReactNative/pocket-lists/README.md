@@ -88,6 +88,10 @@ Where to look
     <h4>Details Screen</h4>
     <img src="screenshots/ios_details.png" alt="Details" width="360" />
   </div>
+  <div style="text-align: center;">
+    <h4>Settings Screen</h4>
+    <img src="screenshots/ios_settings.png" alt="Details" width="360" />
+  </div>
 
   <h3> Android </h3>
   <div style="text-align: center;">
@@ -97,5 +101,9 @@ Where to look
   <div style="text-align: center;">
     <h4>Details Screen</h4>
     <img src="screenshots/android_details.jpeg" alt="Details" width="360" />
+  </div>
+  <div style="text-align: center;">
+    <h4>Settings Screen</h4>
+    <img src="screenshots/android_settings.png" alt="Details" width="360" />
   </div>
 </div>
